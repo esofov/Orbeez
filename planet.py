@@ -2,7 +2,7 @@ import numpy as np
 class Planet:
     def __init__(self,a:float,p:float,r:float,color):
         self.a=a
-        self.r=r*50
+        self.r=r*25
         if color is None:
             self.color='black'
         else:

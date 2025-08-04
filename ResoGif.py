@@ -2,6 +2,7 @@ from planet import Planet
 from orbitplot import plot_orbit
 import numpy as np
 from PIL import Image
+import os
 
 def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), color_list=None, increments=100):
     if color_list is None:
@@ -18,11 +19,12 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), color
     for j in range(increments):
         for planet in planet_list:
             planet.update_pos(j/increments)
-        plot_orbit(planet_list, directory, j, figsize)
+        plot_orbit(planet_list, directory, name, j, figsize)
 
-    frames = [Image.open(directory+str(i)+'.jpg') for i in range(increments)]
+    frames = [Image.open(directory+'/'+name+'_'+str(i)+'.jpg') for i in range(increments)]
 
     frame_1 = frames[0]
-    frame_1.save(directory+name+'.gif', format='GIF', append_images=frames, save_all=True, duration=100, loop=0)
+    frame_1.save(directory+'/'+name+'.gif', format='GIF', append_images=frames, save_all=True, duration=100, loop=0)
 
-
+    for j in range(increments):
+        os.remove(directory+'/'+name+'_'+str(j)+'.jpg')
