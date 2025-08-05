@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: tuple, title = False):
+def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: tuple, title = False, dpi = 200):
 
     fig, ax = plt.subplots(figsize = figsize, layout = 'constrained')
 
@@ -29,6 +29,6 @@ def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: 
     if title:
         ax.set_title(name, fontsize = 20)
 
-    fig.savefig(directory+'/'+name+'_'+str(num)+'.jpg', dpi = 200)
+    fig.savefig(directory+'/'+name+'_'+str(num)+'.jpg', dpi = dpi)
 
     plt.close()
