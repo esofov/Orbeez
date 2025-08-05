@@ -1,4 +1,4 @@
-# ResoGif
+# Orbeez
 Code/Astro group 10
 
-Orbital Resonance Calculator and GIF Visualization generator.
+ GIF Visualization generator for exoplanetary system orbits.
