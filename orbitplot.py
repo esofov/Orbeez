@@ -27,6 +27,6 @@ def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: 
     ax.set_aspect('equal')
     ax.axis('off')
 
-    fig.savefig(directory+'/'+name+'_'+str(num)+'.jpg')
+    fig.savefig(directory+'/'+name+'_'+str(num)+'.jpg', dpi = 200)
 
     plt.close()
