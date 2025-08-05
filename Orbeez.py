@@ -5,6 +5,7 @@ from PIL import Image
 from astroquery.ipac.nexsci.nasa_exoplanet_archive import NasaExoplanetArchive
 from astropy import units as u
 from orbitplot import plot_orbit
+import tqdm
 
 
 
@@ -37,12 +38,14 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
         entry = Planet(a_list[i], p_list[i], r_list[i], color_list[i])
         planet_list.append(entry)
 
-    for j in range(increments):
+    print('Generating images...')
+    for j in tqdm.tqdm(range(increments)):
         for planet in planet_list:
             planet.update_pos(j/increments*num_periods)
         plot_orbit(planet_list, directory, name, j, figsize, title = title)
 
-    frames = [Image.open(directory+'/'+name+'_'+str(i)+'.jpg') for i in range(increments)]
+    print('Stitching frames...')
+    frames = [Image.open(directory+'/'+name+'_'+str(i)+'.jpg') for i in tqdm.tqdm(range(increments))]
 
     frame_1 = frames[0]
     frame_1.save(directory+'/'+name+'.gif', format='GIF', append_images=frames, save_all=True, duration=gif_duration/increments*1000, loop=0)
@@ -51,7 +54,7 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
         os.remove(directory+'/'+name+'_'+str(j)+'.jpg')
 
 
-def gif_from_archive(system_name: str, directory, name, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, increments=100, title = False):
+def gif_from_archive(system_name: str, directory, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, increments=100, title = False):
     data = NasaExoplanetArchive.query_criteria(
         table="ps", 
         select="pl_name, pl_orbsmax, pl_orbper, pl_radj, st_rad", 
@@ -62,5 +65,5 @@ def gif_from_archive(system_name: str, directory, name, figsize=(8,8), num_perio
     p_list = data['pl_orbper'].value
     r_list = (data['pl_radj'].to(u.Rsun)/data['st_rad']).value
 
-    make_orbit_gif(a_list, p_list, r_list, directory=directory, name=name, figsize=figsize, num_periods=num_periods, gif_duration=gif_duration, color_list=color_list, increments=increments, title=title)
+    make_orbit_gif(a_list, p_list, r_list, directory=directory, name=system_name, figsize=figsize, num_periods=num_periods, gif_duration=gif_duration, color_list=color_list, increments=increments, title=title)
 
