@@ -1,14 +1,30 @@
-from planet import Planet
-from orbitplot import plot_orbit
-import numpy as np
-from PIL import Image
 import os
+import numpy as np
+from planet import Planet
+from PIL import Image
 from astroquery.ipac.nexsci.nasa_exoplanet_archive import NasaExoplanetArchive
 from astropy import units as u
+from orbitplot import plot_orbit
+
+
 
 def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, increments=100, title = False):
+
+    if not len(a_list) == len(p_list) == len(r_list):
+        print('Planet arrays not same length')
+        return 
+    
+    if np.any(np.isnan(r_list)):
+        print('Query returned some nan planetary radii, setting radii to default value of 0.01')
+        indices = np.where(np.isnan(r_list))[0]
+        for i in indices:
+            r_list[i] = 0.01
+
     if color_list is None:
         color_list = [None] * len(a_list)
+    elif len(color_list) < len(a_list):
+        color_list *= int(np.ceil(len(a_list)/len(color_list)))
+        
 
     p_list = np.array(p_list)/max(p_list)
 
