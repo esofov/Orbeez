@@ -50,7 +50,8 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
     frame_1 = frames[0]
     frame_1.save(directory+'/'+name+'.gif', format='GIF', append_images=frames, save_all=True, duration=gif_duration/increments*1000, loop=0)
 
-    for j in range(increments):
+    print('Deleting images...')
+    for j in tqdm.tqdm(range(increments)):
         os.remove(directory+'/'+name+'_'+str(j)+'.jpg')
 
 
