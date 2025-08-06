@@ -10,7 +10,30 @@ from astroquery.gaia import Gaia
 
 
 
-def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None,star_color='orange', num_frames=100, title = False, dpi = 200):
+def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_periods = 1, gif_duration = 10.0, color_list=None, star_color='orange', num_frames=100, title = False, dpi = 200):
+    """Makes a .gif animation of the orbits of the input planetary system.
+
+    Args:
+        a_list (array_like): List of semimajor axis values for the planets in the system, in units of stellar radii.
+        p_list (array_like): List of orbital period values for the planets in the system, in any consistent units.
+        r_list (array_like): List of planetary radii values for the planets in the system, in units of stellar radii.
+        directory (str): Path to the directory in which to save the resulting .gif animation.
+        name (str): Name of the resulting .gif animation.
+        figsize (tuple, optional): Size of the .gif animation in units of inches. Formatted as (width, height).
+            Default is (8,8).
+        num_periods (int, optional): Number of periods of the outermost planet to animate. Default is 1.
+        gif_duration (float, optional): Duration of the whole .gif animation in seconds. Default is 10 seconds.
+        color_list (array_like, optional): List of matplotlib colors to loop through when plotting the planets.
+            Default is None, which sets the planets to be black.
+        star_color (str, optional): matplotlib color to use for the star. Default is orange.
+        num_frames (int, optional): Number of frames to use in the .gif animation. More frames will make the
+            animation more smooth, but will slow down the creation process. Too many frames may cause the kernel
+            to crash when making the .gif. Default is 100.
+        title (bool, optional): Whether or not to include the name as a title above the animation. Default is False.
+        dpi (int, optional): Dots per inch to use when saving the frames. If the kernel is crashing, try reducing the
+            dpi. Default is 200.
+
+    """
 
     if not len(a_list) == len(p_list) == len(r_list):
         print('Planet arrays not same length')
@@ -56,7 +79,7 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
         os.remove(directory+'/'+name+'_'+str(j)+'.jpg')
 
 
-def gif_from_archive(system_name: str, directory, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, num_frames=100, title = False, dpi = 200):
+def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, num_frames=100, title = False, dpi = 200):
     data = NasaExoplanetArchive.query_criteria(
         table="ps", 
         select="pl_name, pl_orbsmax, pl_orbper, pl_radj, st_rad, gaia_id",
