@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Orbeez"
+version = "1.0.0"
+
+dependencies = [
+ "numpy",
+ "matplotlib",
+ "pillow",
+ "astroquery",
+ "astropy",
+ "tqdm"
+]
