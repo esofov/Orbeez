@@ -35,10 +35,10 @@ def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: 
 
 def get_star_color(bp_rp):
     colors = [
-        {"min": -3, "max": -0.26,  "color": '#a200ff'},
-        {"min": -0.25, "max": -0.038, "color": '#0092ed'},
+        {"min": -3, "max": -0.26,  "color": '#0000ff'},
+        {"min": -0.25, "max": -0.038, "color": '#699bff'},
         {"min": -0.037, "max": 0.327, "color": '#00eded'},
-        {"min": 0.326, "max": 0.767,  "color": '#57ed00'},
+        {"min": 0.326, "max": 0.767,  "color": "#F9E400"},
         {"min": 0.768, "max": 0.984, "color": '#ffbe0d'},
         {"min": 0.983, "max": 1.85, "color": '#ff801f'},
         {"min": 1.85, "max": 7.0, "color": '#d40b0b'}
