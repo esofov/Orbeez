@@ -57,6 +57,24 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
 
 
 def gif_from_archive(system_name: str, directory, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, num_frames=100, title = False, dpi = 200):
+    
+    """Generates gif of exoplanet system with user entered name from NASA Exoplanet Archive.
+
+    Args:
+        system_name (str): Name of the exoplanet system as found in NASA exoplanet Archive
+        directory (str): Directory where you would like the gif to be saved
+        figsize (tuple, optional): Shape and size of generated gif. Default is (8,8)
+        num_periods (int, optional): Number of orbits you would like the longest period planet to make before restarting. Default is 1
+        gif_duration (float, optional): Time in seconds before the gif restarts. Default is 10s
+        color_list (list, optional): list of colors in order of planet period from shortest to longest. Default is None, and will make all planets black
+        num_frames (int, optional): number of frames generated. Default=100.
+        title (string, optional): Add a title to your gif. Default is False (no title displayed)
+        dpi (int, optional): Set dots per inch. Default is 200.
+
+    Returns: 
+
+    """
+    
     data = NasaExoplanetArchive.query_criteria(
         table="ps", 
         select="pl_name, pl_orbsmax, pl_orbper, pl_radj, st_rad, gaia_id",
