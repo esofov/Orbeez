@@ -4,17 +4,23 @@ import matplotlib.pyplot as plt
 def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: tuple, title = False, dpi = 200,star_color='orange'):
     """Plots planetary system
 
-    Plots the plantary system orbits given a list of planets to be saved as a gif.
+    Plots the plantary system orbits given a list of planets to be saved as a GIF.
 
     Args:
-        planetary_list (list): List of Planet objects.
-        directory (str): Path to which plots and resulting .gif animation will be saved.
-        name (str): Name of plot files to be generated and the resulting .gif animation.
-        num (str): Number representing order of plot in .gif animation frames.
-        figsize (tuple): matplotlib figure size in (height [in], width [in]). Default is (8, 8)
-        title (bool, optional): Binary determiner for plot title to be included in each plot and the resulting .gif animation. Default is False.
-        dpi (int, optional): DPI for each plot. Default is 200
-        star_color (str, optional): matplotlib color to use for the star. Default is 'orange'.
+        planetary_list (list): List of Planet objects representing the planets in the system.
+        directory (str): Path to the directory in which to save plots.
+        name (str): Name of plot files.
+        num (int): Number representing order of plot in .gif animation frames. 
+            Follows <name>_<num>.jpg convention.
+        figsize (tuple, optional): Plot figure size in units of inches formatted as (width, height). 
+            Default is (8, 8)
+        title (bool, optional): Binary determiner for plot title to be included in each plot. 
+            Default is False.
+        dpi (int, optional): Dots per inch to use when saving the plot. 
+            If kernel is crashing, try reducing the DPI.
+            Default is 200
+        star_color (str, optional): matplotlib color to use for the star. 
+            Default is 'orange'.
     """
     fig, ax = plt.subplots(figsize = figsize, layout = 'constrained')
 
