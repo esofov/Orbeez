@@ -79,20 +79,25 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
         os.remove(directory+'/'+name+'_'+str(j)+'.jpg')
 
 
-def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif_duration = 10, color_list=None, num_frames=100, title = False, dpi = 200):
+def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif_duration = 10.0, color_list=None, num_frames=100, title = False, dpi = 200):
      
     """Generates gif of exoplanet system with user entered name from NASA Exoplanet Archive.
 
     Args:
-        system_name (str): Name of the exoplanet system as found in NASA exoplanet Archive
-        directory (str): Directory where you would like the gif to be saved
-        figsize (tuple, optional): Shape and size of generated gif. Default is (8,8)
-        num_periods (int, optional): Number of orbits you would like the longest period planet to make before restarting. Default is 1
-        gif_duration (float, optional): Time in seconds before the gif restarts. Default is 10s
-        color_list (list, optional): list of colors in order of planet period from shortest to longest. Default is None, and will make all planets black
-        num_frames (int, optional): number of frames generated. Default=100.
-        title (string, optional): Add a title to your gif. Default is False (no title displayed)
-        dpi (int, optional): Set dots per inch. Default is 200.
+        system_name (str): Name of the exoplanet system as found in NASA exoplanet Archive.
+        directory (str): Directory where you would like the gif to be saved.
+        figsize (tuple, optional): Size of the .gif animation in units of inches. Formatted as (width, height).
+            Default is (8,8).
+        num_periods (int, optional): Number of periods of the outermost planet to animate. Default is 1.
+        gif_duration (float, optional): Duration of the whole .gif animation in seconds. Default is 10 seconds.
+        color_list (list, optional): List of matplotlib colors to loop through when plotting the planets.
+            Default is None, which sets the planets to be black.
+        num_frames (int, optional): Number of frames to use in the .gif animation. More frames will make the
+            animation more smooth, but will slow down the creation process. Too many frames may cause the kernel
+            to crash when making the .gif. Default is 100.
+        title (bool, optional): Whether or not to include the name as a title above the animation. Default is False.
+        dpi (int, optional): Dots per inch to use when saving the frames. If the kernel is crashing, try reducing the
+            dpi. Default is 200.
     """
     
     data = NasaExoplanetArchive.query_criteria(
