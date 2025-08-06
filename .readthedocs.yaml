@@ -34,4 +34,4 @@ python:
   install:
     - requirements: requirements.txt
     - method: pip
-    path: . # install orbeez
+      path: . # install orbeez
