@@ -9,7 +9,7 @@ def test_planet():
     """
 
     Planet(1, 1, 1, 'blue')
-    Planet.update_pos(1)
+    Planet.update_pos(t=1)
 
     assert Planet.theta == pytest.approx(1/1*2*np.pi + np.pi/2, abs=1e-3)
     assert Planet.x == pytest.approx(1*np.cos(1/1*2*np.pi + np.pi/2), abs=1e-3)
