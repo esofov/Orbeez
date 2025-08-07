@@ -4,3 +4,4 @@ astropy
 astroquery
 tqdm
 pillow
+scipy
