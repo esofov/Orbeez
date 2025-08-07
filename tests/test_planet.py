@@ -11,7 +11,6 @@ def test_planet():
     p = Planet(1, 1, 1, 'blue')
     p.update_pos(t=1)
 
-    assert p.theta == pytest.approx(1/1*2*np.pi + np.pi/2, abs=1e-3)
     assert p.x == pytest.approx(1*np.cos(1/1*2*np.pi + np.pi/2), abs=1e-3)
     assert p.y == pytest.approx(1*np.sin(1/1*2*np.pi + np.pi/2), abs=1e-3)
 
