@@ -42,12 +42,13 @@ class Planet:
             self.Tp = -self.p/(2*np.pi) * (Eocc - self.e*np.sin(Eocc))
         
     def update_pos(self, t):
-      """Update the position of the planet along its orbit given a timestep
+        """
+        Update the position of the planet along its orbit given a timestep
 
         Args:
             t (float): timestep defining how far to move planet along orbit
         """
-        
+      
         if self.e == 0:
 
             theta = t/self.p*2*np.pi + np.pi/2
