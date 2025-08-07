@@ -15,3 +15,6 @@ dependencies = [
  "astropy",
  "tqdm"
 ]
+
+[tool.setuptools]
+py-modules = []
