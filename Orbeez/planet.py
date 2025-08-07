@@ -10,6 +10,8 @@ class Planet:
         a (float): semi-major axis for planet in units of stellar radii
         p (float): period for planet in any unit consistent with other planetary orbits
         r (float): radius for planet in units of stellar radii
+        e (float): eccentricity for planet
+        w (float): argument of periastron for planet in units of radians
         color (str): color which the planet itself (not the orbital circle) will be plotted with
         x (float): x-coordinate defining position of planet along orbit 
         y (float): y-coordinate defining position of planet along orbit
@@ -20,6 +22,8 @@ class Planet:
             a (float): semi-major axis for planet in units of stellar radii
             p (float): period for planet in any unit consistent with other planetary orbits
             r (float): radius for planet in units of stellar radii
+            e (float): eccentricity for planet
+            w (float): argument of periastron for planet in units of radians
             color (str): color which the planet itself (not the orbital circle) will be plotted with
         """
 
@@ -43,7 +47,7 @@ class Planet:
         
     def update_pos(self, t):
         """
-        Update the position of the planet along its orbit given a timestep
+        Update the position of the planet along its orbit given a timestep.
 
         Args:
             t (float): timestep defining how far to move planet along orbit
@@ -64,6 +68,12 @@ class Planet:
             self.y = -d*np.sin(self.w+f)
 
     def solve_for_E(self, t):
+        """
+        Solve or the eccentric anomaly of the planet at a given time t.
+
+        Args:
+            t (float): time at which to calculate the eccentric anomaly
+        """
 
         return fsolve(lambda x: x - self.e * np.sin(x) - 2*np.pi / self.p * (t-self.Tp), 2*np.pi / self.p * (t-self.Tp))[0]
 

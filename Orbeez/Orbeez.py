@@ -19,6 +19,10 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, e_list = None, w_lis
         r_list (array_like): List of planetary radii values for the planets in the system, in units of stellar radii.
         directory (str): Path to the directory in which to save the resulting .gif animation.
         name (str): Name of the resulting .gif animation.
+        e_list (array_like, optional): List of eccentricity values for the planets in the system. If None, default
+            initializes the eccentricities of all planets to 0. Default is None.
+        w_list (array_like, optional): List of arguments of periastron for the planets in the system, in units of
+            radians. If None, default initializes the arguments of periastron of all planets to pi/2. Default is None.
         figsize (tuple, optional): Size of the .gif animation in units of inches. Formatted as (width, height).
             Default is (8,8).
         num_periods (int, optional): Number of periods of the outermost planet to animate. Default is 1.
