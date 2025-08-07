@@ -8,6 +8,7 @@ Code/Astro 2025 group 10
 
 [![A rectangular badge, half black half purple containing the text made at Code Astro](https://img.shields.io/badge/Made%20at-Code/Astro-blueviolet.svg)](https://semaphorep.github.io/codeastro/)
 ![PyPI - Version](https://img.shields.io/pypi/v/Orbeez?color=green)
+![Build Status](https://github.com/esofov/Orbeez/actions/workflows/python-package.yml/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/orbeez/badge/?version=latest)](https://orbeez.readthedocs.io/en/latest/?badge=latest)
 
 [![DOI](https://zenodo.org/badge/1032001027.svg)](https://doi.org/10.5281/zenodo.16754434)
