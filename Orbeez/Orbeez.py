@@ -10,7 +10,7 @@ from astroquery.gaia import Gaia
 
 
 
-def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_periods = 1, gif_duration = 10.0, color_list=None, star_color='orange', num_frames=100, title = False, dpi = 200):
+def make_orbit_gif(a_list, p_list, r_list, directory, name, e_list = None, w_list = None, figsize=(8,8), num_periods = 1, gif_duration = 10.0, color_list=None, star_color='orange', num_frames=100, title = False, dpi = 200):
     """Makes a .gif animation of the orbits of the input planetary system.
 
     Args:
@@ -35,7 +35,13 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
 
     """
 
-    if not len(a_list) == len(p_list) == len(r_list):
+    if e_list is None or w_list is None:
+
+        e_list = [0]*len(a_list)
+        w_list = [np.pi/2]*len(a_list)
+        
+
+    if not len(a_list) == len(p_list) == len(r_list) == len(e_list) == len(w_list):
         print('Planet arrays not same length')
         return 
     
@@ -59,7 +65,7 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, figsize=(8,8), num_p
     planet_list = []
 
     for i in range(len(a_list)):
-        entry = Planet(a_list[i], p_list[i], r_list[i], color_list[i])
+        entry = Planet(a_list[i], p_list[i], r_list[i], e_list[i], w_list[i], color_list[i])
         planet_list.append(entry)
 
     print('Generating images...')
@@ -102,7 +108,7 @@ def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif
     
     data = NasaExoplanetArchive.query_criteria(
         table="ps", 
-        select="pl_name, pl_orbsmax, pl_orbper, pl_radj, st_rad, gaia_id",
+        select="pl_name, pl_orbsmax, pl_orbper, pl_radj, pl_orbeccen, pl_orblper, st_rad, gaia_id",
         where="hostname='{}' AND default_flag=1".format(system_name),
     )
 
@@ -111,6 +117,11 @@ def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif
     a_list = (data['pl_orbsmax'].to(u.Rsun)/data['st_rad']).value
     p_list = data['pl_orbper'].value
     r_list = (data['pl_radj'].to(u.Rsun)/data['st_rad']).value
+    e_list = (data['pl_orbeccen']).value
+    w_list = (data['pl_orblper']).value * np.pi/180
+    i = np.where(np.isnan(e_list))
+    e_list[i] = 0
+    w_list[i] = np.pi/2
 
     gaiaid=data['gaia_id'][0].split()[2]
     query = f"SELECT bp_rp FROM gaiadr2.gaia_source WHERE source_id = {gaiaid}"
@@ -120,5 +131,5 @@ def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif
     star_color=get_star_color(bp_rp)
     
 
-    make_orbit_gif(a_list, p_list, r_list, directory=directory, name=system_name, figsize=figsize, num_periods=num_periods, gif_duration=gif_duration, color_list=color_list, star_color=star_color, num_frames=num_frames, title=title, dpi=dpi)
+    make_orbit_gif(a_list, p_list, r_list, directory=directory, name=system_name, e_list = e_list, w_list = w_list, figsize=figsize, num_periods=num_periods, gif_duration=gif_duration, color_list=color_list, star_color=star_color, num_frames=num_frames, title=title, dpi=dpi)
 
