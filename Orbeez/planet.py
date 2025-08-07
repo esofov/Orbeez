@@ -16,7 +16,7 @@ class Planet:
         x (float): x-coordinate defining position of planet along orbit 
         y (float): y-coordinate defining position of planet along orbit
     """
-    def __init__(self, a, p, r, e, w, color):
+    def __init__(self, a, p, r, e, w, color, planet_r_scale = 25):
         """
         Args:
             a (float): semi-major axis for planet in units of stellar radii
@@ -25,11 +25,12 @@ class Planet:
             e (float): eccentricity for planet
             w (float): argument of periastron for planet in units of radians
             color (str): color which the planet itself (not the orbital circle) will be plotted with
+            planet_r_scale (float, optional): Factor by which to scale up the planet radii. Default is 25.
         """
 
         self.a = a
         self.p = p
-        self.r = r*25
+        self.r = r*planet_r_scale
         self.e = e
         self.w = w
         if color is None:
