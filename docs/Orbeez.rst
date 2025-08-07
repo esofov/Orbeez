@@ -1,4 +1,4 @@
-.. _orbeez:
+.. _Orbeez:
 
 Orbeez Functions
 =====================
