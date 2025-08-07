@@ -1,6 +1,6 @@
 .. _orbeez:
 
-Orbeez Functions
+Detailed API Documentation
 =====================
 
 Function to generate .gif animations of exoplanetary systems.
