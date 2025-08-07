@@ -135,6 +135,32 @@ def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif
         i = np.where(np.isnan(w_list))[0]
         w_list[i] = np.pi/2
 
+    if np.all(np.isnan(a_list)):
+        print('No semi-major axes available.')
+        return
+    
+    if np.all(np.isnan(p_list)):
+        print('No periods available.')
+        return
+    
+    if np.any(np.isnan(a_list) & np.isnan(p_list)):
+        print('One planet has no semi-major axis and no period.')
+        return
+
+    if np.any(np.isnan(a_list)):
+        i = np.where(~np.isnan(a_list))[0][0]
+        p0 = p_list[i]
+        a0 = a_list[i]
+        j = np.where(np.isnan(a_list))[0]
+        a_list[j] = (p_list[j]/p0)**(2/3) * a0
+
+    if np.any(np.isnan(p_list)):
+        i = np.where(~np.isnan(p_list))[0][0]
+        p0 = p_list[i]
+        a0 = a_list[i]
+        j = np.where(np.isnan(p_list))[0]
+        p_list[j] = (a_list[j]/a0)**(3/2) * p0
+
     gaiaid=data['gaia_id'][0].split()[2]
     query = f"SELECT bp_rp FROM gaiadr2.gaia_source WHERE source_id = {gaiaid}"
     job = Gaia.launch_job(query)
