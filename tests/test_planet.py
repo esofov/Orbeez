@@ -8,7 +8,7 @@ def test_planet():
     Tests the proper instantiation of a Planet object and that it integrates correctly
     """
 
-    Planet(1, 1, 1)
+    Planet(1, 1, 1, 'blue')
     Planet.update_pos(1)
 
     assert Planet.theta == pytest.approx(1/1*2*np.pi + np.pi/2, abs=1e-3)
