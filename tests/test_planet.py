@@ -13,6 +13,3 @@ def test_planet():
 
     assert p.x == pytest.approx(1*np.cos(1/1*2*np.pi + np.pi/2), abs=1e-3)
     assert p.y == pytest.approx(1*np.sin(1/1*2*np.pi + np.pi/2), abs=1e-3)
-
-
-
