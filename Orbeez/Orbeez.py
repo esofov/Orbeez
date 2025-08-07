@@ -11,7 +11,8 @@ from astroquery.gaia import Gaia
 
 
 def make_orbit_gif(a_list, p_list, r_list, directory, name, e_list = None, w_list = None, figsize=(8,8), num_periods = 1, gif_duration = 10.0, color_list=None, star_color='orange', num_frames=100, title = False, dpi = 200, planet_r_scale = 25):
-    """Makes a .gif animation of the orbits of the input planetary system.
+    """
+    Makes a .gif animation of the orbits of the input planetary system.
 
     Args:
         a_list (array_like): List of semimajor axis values for the planets in the system, in units of stellar radii.
@@ -92,7 +93,8 @@ def make_orbit_gif(a_list, p_list, r_list, directory, name, e_list = None, w_lis
 
 def gif_from_archive(system_name, directory, figsize=(8,8), num_periods = 1, gif_duration = 10.0, color_list=None, num_frames=100, title = False, dpi = 200, planet_r_scale = 25):
      
-    """Generates gif of exoplanet system with user entered name from NASA Exoplanet Archive.
+    """
+    Generates gif of exoplanet system with user entered name from NASA Exoplanet Archive.
 
     Args:
         system_name (str): Name of the exoplanet system as found in NASA exoplanet Archive.
