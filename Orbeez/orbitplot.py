@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Ellipse
 
 
 def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: tuple, title = False, dpi = 200,star_color='orange'):
@@ -31,9 +33,14 @@ def plot_orbit(planet_list: list, directory: str, name: str, num: int, figsize: 
 
     for planet in planet_list:
 
-        aplusrlist.append(planet.a+planet.r)
+        aplusrlist.append(planet.a*(1+planet.e)+planet.r)
 
-        orb = plt.Circle((0,0), planet.a, edgecolor = 'black', facecolor = 'None')
+        if planet.e == 0:
+            orb = plt.Circle((0,0), planet.a, edgecolor = 'black', facecolor = 'None')
+
+        else:
+            orb = Ellipse((planet.a*planet.e*np.cos(planet.w), planet.a*planet.e*np.sin(planet.w)), 2*planet.a, 2*planet.a*np.sqrt(1-planet.e**2), angle = planet.w*180/np.pi, edgecolor = 'black', facecolor = 'None')
+
         ax.add_patch(orb)
 
         planetcircle = plt.Circle((planet.x, planet.y), planet.r, color = planet.color)
