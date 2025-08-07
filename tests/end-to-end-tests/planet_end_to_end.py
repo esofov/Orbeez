@@ -1,5 +1,5 @@
 import os
-from Orbeez import Orbeez
+from Orbeez import orbeez
 
 def test_make_orbit_gif(directory: str='tests/end-to-end-tests/'):
     """
@@ -14,7 +14,7 @@ def test_make_orbit_gif(directory: str='tests/end-to-end-tests/'):
     p_list = [1, 2, 3]
     r_list = [1, 1, 1]
 
-    Orbeez.make_orbit_gif(a_list, p_list, r_list, directory, 'planet')
+    orbeez.make_orbit_gif(a_list, p_list, r_list, directory, 'planet')
     assert os.path.isfile(directory+'planet.gif')
 
 

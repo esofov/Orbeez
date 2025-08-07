@@ -1,10 +1,10 @@
 import os
 import numpy as np
-from .planet import Planet
+from Orbeez.planet import Planet
 from PIL import Image
 from astroquery.ipac.nexsci.nasa_exoplanet_archive import NasaExoplanetArchive
 from astropy import units as u
-from .orbitplot import plot_orbit, get_star_color
+from Orbeez.orbitplot import plot_orbit, get_star_color
 import tqdm
 from astroquery.gaia import Gaia
 

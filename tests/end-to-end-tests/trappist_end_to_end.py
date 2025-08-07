@@ -1,5 +1,5 @@
 import os
-from Orbeez import Orbeez
+from Orbeez import orbeez
 
 def test_gif_from_archive(directory: str='tests/end-to-end-tests/'):
     """
@@ -10,7 +10,7 @@ def test_gif_from_archive(directory: str='tests/end-to-end-tests/'):
             Default is end-to-end-tests folder.
     """
 
-    Orbeez.gif_from_archive('TRAPPIST-1', directory)
+    orbeez.gif_from_archive('TRAPPIST-1', directory)
     assert os.path.isfile(directory+'TRAPPIST-1.gif')
 
 

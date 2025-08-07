@@ -5,5 +5,5 @@ Orbeez Functions
 
 Function to generate .gif animations of exoplanetary systems.
 
-.. automodule:: Orbeez
+.. automodule:: orbeez
    :members:
