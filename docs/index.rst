@@ -6,16 +6,16 @@
 Detailed API Documentation
 ===========================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Welcome to ``orbeez``, a Python package that generates .gif animations of the orbits of planets
+in a system architecture. 
+
+If you find a bug, want to request a feature, etc. please create an `issue on Github <https://github.com/esofov2/Orbeez/issues>`_.` 
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: User Guide:
 
-   orbeez.rst
-   orbitplot.rst
-   planet.rst
+   installation.rst
+   api.rst
 
